@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const employee_1 = require("./additionals/employee");
+const department_1 = require("./additionals/department");
+var shuraev = new employee_1.Company.Employee("Сергей Шураев Валентинович", 32, "Начальник отдела инженеров ПО");
+var peter = new employee_1.Company.Employee("Peter Peterson", 20, "инженер ПО");
+var employees = new Array();
+employees.push(shuraev);
+employees.push(peter);
+var myDepartment = new department_1.Department("Отдел инженеров ПО", employees);
+var cemik = new employee_1.Company.Employee("Александр Лубенец", 36, "ведущий инженер-программист");
+myDepartment.addEmployee(cemik);
+console.log(myDepartment.getEmployees());
