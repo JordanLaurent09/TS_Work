@@ -84,3 +84,59 @@ console.log(set.size);
 
 set.clear(); */
 
+
+
+//Iterable - позволяет принимать любые перечисляемые типы
+
+/* let array: Iterable<number> = [1, 2, 3, 4, 5, 6];
+
+for (let value of array) console.log(value); */
+
+/* let array: Iterable<number> = [1, 2, 3, 4, 5];
+let iterator: Iterator<number> = array[Symbol.iterator]();
+
+let result = iterator.next();
+
+while (!result.done) {
+    console.log(result.value);
+    result = iterator.next();
+} */
+
+
+
+
+
+class CustomIterable implements Iterable<number> {
+   private _data: number[];
+   
+   constructor(data: number[]) {
+        this._data = data;
+   }
+
+
+   [Symbol.iterator](): Iterator<number> {
+        let index = 0;
+
+        const data = this._data;
+
+        return {
+            next(): IteratorResult<number> {
+                if (index < data.length) {
+                    return {value: data[index++], done: false }
+                }
+                else {
+                    return {value: undefined, done: true }
+                }
+            }
+        }
+   }
+}
+
+const custom: CustomIterable = new CustomIterable([10, 20, 30]);
+
+for (let value of custom) {
+    console.log(value);
+}
+
+
+
